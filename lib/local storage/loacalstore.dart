@@ -1,11 +1,29 @@
-import 'package:ecommerce/models/models.dart';
-import 'package:hive/hive.dart';
+// import 'package:ecommerce/models/favmodel.dart';
+// import 'package:ecommerce/objectbox.g.dart';
 
-abstract class BaselocalRepo{
-  Future <Box> openbox();
-  List <DealsArray> favoritelist(Box box);
-  Future <void> addproductfavorite(Box box,DealsArray myfavdealsarry);
-  Future <void> removeproductfavorite(Box box,DealsArray myfavdealsarry);
-  Future <void> clearproductfavorite(Box box);
-  
-}
+// class ObjectBox {
+//   // late final Store _store;
+//   // late final Box<FavModels> _favModels;
+
+//   // ObjectBox._init(this._store) {
+//     // _favModels = Box<FavModels>(_store);
+//   }
+
+//   static Future<ObjectBox> init() async {
+//     // final store = await openStore();
+
+//     return ObjectBox._init(store);
+//   }
+
+//   FavModels? getFavModels(int id) => _favModels.get(id);
+
+//   Stream<List<FavModels>> getFavModelss() => _favModels
+//       .query()
+//       .watch(triggerImmediately: true)
+//       .map((query) => query.find());
+
+//   int insertFavModels(FavModels favModels) => _favModels.put(favModels);
+
+//   bool deleteUser(int id) => _favModels.remove(id);
+//    usercount() => _favModels.count();
+// }

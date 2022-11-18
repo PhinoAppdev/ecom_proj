@@ -1,11 +1,5 @@
 import 'dart:convert';
-import 'dart:math';
 
-import 'package:ecommerce/models/homepagemodel.dart';
-import 'package:ecommerce/models/models.dart';
-import 'package:ecommerce/models/mymodels.dart';
-import 'package:ecommerce/models/postProductdetailpage.dart';
-import 'package:ecommerce/webservices/postdatatodetailpage.dart';
 import 'package:http/http.dart' as http;
 
 Map? respons;

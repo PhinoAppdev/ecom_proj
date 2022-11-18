@@ -1,4 +1,6 @@
+import 'package:ecommerce/objecctbox/addtofav.dart';
 import 'package:ecommerce/pages/Loginpage.dart';
+import 'package:ecommerce/pages/botm.dart';
 import 'package:ecommerce/pages/botmnavagain.dart';
 import 'package:ecommerce/pages/bottomnav.dart';
 import 'package:ecommerce/pages/cart.dart';
@@ -11,13 +13,18 @@ import 'package:ecommerce/pages/detailspage.dart';
 import 'package:ecommerce/pages/selectloc.dart';
 import 'package:ecommerce/pages/timer.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main()  {
-  // await Hive.initFlutter();
-  // var box =await Hive.openBox('deals_array');
-  runApp(const MyApp());  
+import 'models/favmodel.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(FavModelsAdapter());
+  await Hive.openBox<FavModels>('AddtoFav');
+  
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -27,22 +34,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Roboto'),
-      // home: const  MyLogin(),
-      // home: MyOTP(),
-      // home: MYOtpPage(),
-      // home: ItemDetailpage(),
-      // home: Example(),
-      // home: MyHomePage(),
-      // home: Home(),
-      home: BotmNav(),
-      // home: Mybtnnav(),
-      // home: Mycart(),
-      // home: Locselect(),
-      // home: Login(),
-      // home: Mybtmnav(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(primarySwatch: Colors.green, fontFamily: 'Roboto'),
+        // home: const  MyLogin(),
+        // home: MyOTP(),
+        // home: MYOtpPage(),
+        // home: ItemDetailpage(),
+        // home: Example(),
+        // home: MyHomePage(),
+        // home: Home(),
+        home: MyHomePage(title: 'hel')
+        // home: const BotmNav(),
+        // home: Mybtnnav(),
+        // home: Mycart(),
+        // home: Locselect(),
+        // home: Login(),
+        // home: Mybtmnav(),
+        );
   }
 }

@@ -34,6 +34,7 @@ class _ItemDetailpageState extends State<ItemDetailpage> {
     return getDetails;
   }
 
+  // ignore: prefer_typing_uninitialized_variables
   var getSlider;
   bool isSliderloading = true;
 
@@ -262,31 +263,97 @@ class _ItemDetailpageState extends State<ItemDetailpage> {
                               )
                             ],
                           ),
+                          // Container(
+                          //   margin: EdgeInsets.only(top: 12),
+                          //   // margin: const EdgeInsets.only(
+                          //   //     top: 10, left: 15, right: 5, bottom: 10),
+                          //   height: 230,
+                          //   child: ListView.builder(
+                          //       scrollDirection: Axis.horizontal,
+                          //       itemCount: 3,
+                          //       itemBuilder: ((context, index) {
+                          //         return homecard(
+                          //             context,
+                          //             index,
+                          //             getSlider.dealsArray![index].images[0]
+                          //                 .imgProduct
+                          //                 .toString(),
+                          //             getSlider.dealsArray[index].name
+                          //                 .toString(),
+                          //             getSlider.dealsArray[index].finalPrice
+                          //                 .toString(),
+                          //             getSlider.dealsArray[index].actualPrice
+                          //                 .toString(),
+                          //             getSlider.dealsArray[index].id,
+                          //             AddtoFav(false));
+                          //       })),
+                          // ),
                           Container(
-                            margin: EdgeInsets.only(top: 12),
-                            // margin: const EdgeInsets.only(
-                            //     top: 10, left: 15, right: 5, bottom: 10),
-                            height: 230,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 3,
-                                itemBuilder: ((context, index) {
-                                  return homecard(
-                                      context,
-                                      index,
-                                      getSlider.dealsArray[index].images[0]
-                                          .imgProduct
-                                          .toString(),
-                                      getSlider.dealsArray[index].name
-                                          .toString(),
-                                      getSlider.dealsArray[index].finalPrice
-                                          .toString(),
-                                      getSlider.dealsArray[index].actualPrice
-                                          .toString(),
-                                      getSlider.dealsArray[index].id,
-                                      AddtoFav(false));
-                                })),
-                          ),
+                  margin: const EdgeInsets.only(
+                      top: 10, left: 15, right: 5, bottom: 10),
+                  height: 230,
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: getSlider != null
+                          ? getSlider.dealsArray.length
+                          : 1,
+                      itemBuilder: ((context, index) {
+                        return getSlider != null
+                            ? InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ItemDetailpage(
+                                          index: index,
+                                          id: getSlider.dealsArray[index].id),
+                                    ),
+                                  );
+                                },
+                                child: homecard(
+                                  context,
+                                  index,
+                                  getSlider
+                                      .dealsArray[index].images[0].imgProduct
+                                      .toString(),
+                                  getSlider.dealsArray[index].name,
+                                  getSlider.dealsArray[index].actualPrice
+                                      .toString(),
+                                  getSlider.dealsArray[index].finalPrice
+                                      .toString(),
+                                  getSlider.dealsArray[index].id,
+                                  IconButton(onPressed: (){}, icon: Icon(Icons.favorite_border_outlined,size: 20,))
+                                 , Stack(children: [
+                  Container(
+                    height: 30,
+                    width: 90,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(3),
+                        border: Border.all(
+                            color: const Color.fromRGBO(0, 155, 55, 1))),
+                  ),
+                  const Positioned(
+                      top: 3,
+                      left: 32,
+                      child: Icon(
+                        Icons.add,
+                        color: Color.fromRGBO(0, 155, 55, 1),
+                      ))
+                ])
+                                ),
+                              )
+                            : const SizedBox(
+                                height: 200,
+                                width: 160,
+                                child: Center(
+                                  child: SizedBox(
+                                      height: 60,
+                                      width: 50,
+                                      child: CircularProgressIndicator()),
+                                ),
+                              );
+                      }))),
                           Container(
                             height: MediaQuery.of(context).size.height / 9,
                           ),

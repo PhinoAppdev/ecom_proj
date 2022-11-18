@@ -1,6 +1,7 @@
 import 'package:ecommerce/models/homepagemodel.dart' as model;
 import 'package:ecommerce/pages/card.dart';
 import 'package:ecommerce/pages/cart.dart';
+import 'package:ecommerce/pages/home.dart';
 
 import 'package:ecommerce/pages/notification.dart';
 import 'package:ecommerce/pages/productcategorybased.dart';
@@ -33,55 +34,7 @@ class _CategoryState extends State<Category> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   title: const Text(
-      //     'Categories',
-      //     style: TextStyle(color: Colors.green),
-      //   ),
-      //   backgroundColor: Colors.white,
-      //   actions: [
-      //     // Padding(
-      //     //         padding: const EdgeInsets.only(right: 8),
-      //     //         child: InkWell(
-      //     //             onTap: () {},
-      //     //             child: Image.asset(
-      //     //               'assests/images/fianlcart.png',
-      //     //               height: 25,
-      //     //             )),
-      //     //       ),
-      //     //       Padding(
-      //     //         padding: const EdgeInsets.symmetric(horizontal: 10),
-      //     //         child: InkWell(
-      //     //             onTap: () {},
-      //     //             child: Image.asset(
-      //     //               'assests/images/bellicn.png',
-      //     //               height: 30,
-      //     //             )),
-      //     //       )
-
-      //     Padding(
-      //       padding: EdgeInsets.only(right: 5),
-      //       child: InkWell(
-      //           child: Image.asset('assests/images/finalcart.png'),
-      //           onTap: () {
-      //             Navigator.push(context,
-      //                 MaterialPageRoute(builder: ((context) => Mycart())));
-      //           }),
-      //     ),
-      //     InkWell(
-      //       child: Image.asset('assests/images/finalbell.png'),
-      //       onTap: () {
-      //         // Navigator.pushAndRemoveUntil(
-      //         //     context,
-      //         //     PageRouteBuilder(pageBuilder: (context, a, b) => Home()),
-      //         //     (route) => false);
-      //       },
-      //     ),
-      //   ],
-      // ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -109,6 +62,8 @@ class _CategoryState extends State<Category> {
                           padding: const EdgeInsets.only(right: 10),
                           child: InkWell(
                             onTap: () {
+                              print(finalQuantity);
+                              print(itesm);
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -151,16 +106,16 @@ class _CategoryState extends State<Category> {
                             mainAxisSpacing: 10,
                             crossAxisSpacing: 10,
                             crossAxisCount: 3,
-                            childAspectRatio: 2.3 / 3),
-                    itemCount: cate.length,
+                            childAspectRatio: 2.2 / 3),
+                    itemCount: getCategoryres.categoryArray.length,
                     itemBuilder: (context, indext) {
                       return InkWell(
                           onTap: () {
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
-                              return
-                                  // Categorypage();
-                                  Categorypage(id: cate[indext]);
+                              return Categorypage(
+                                id: getCategoryres.categoryArray[indext].id,
+                              );
                             }));
                           },
                           // onTap: () {
@@ -169,8 +124,10 @@ class _CategoryState extends State<Category> {
                           //     ItemDetailpage(dataitem: cate[indext]);
                           //   }));
                           // },
-                          child: card(cate[indext].image.toString(),
-                              cate[indext].name.toString()));
+                          child: card(
+                              getCategoryres.categoryArray[indext].imagePath
+                                  .toString(),
+                              getCategoryres.categoryArray[indext].name));
                     }),
               )
             ]),

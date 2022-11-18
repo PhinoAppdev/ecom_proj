@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 card(String img, String name) {
@@ -22,20 +23,21 @@ card(String img, String name) {
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 5),
-          child: Image.asset(
+          child: Image.network(
             img,
             height: 80,
             fit: BoxFit.fill,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
-          child: Text(
-            name,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
+        Container(
+          margin: const EdgeInsets.only(top: 5),
+          child: Center(
+            child: AutoSizeText(
+              name,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         )
